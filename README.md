@@ -5,13 +5,17 @@
 [![GitHub](https://img.shields.io/github/v/release/winjwinj/bpsr-logs?style=flat-square)](https://github.com/winjwinj/bpsr-logs/releases)
 [![GitHub](https://img.shields.io/github/license/winjwinj/bpsr-logs?style=flat-square)](https://github.com/winjwinj/bpsr-logs/blob/master/LICENSE)
 
-BPSR Logs is a "blazingly fast" open source Blue Protocol: Star Resonance DPS meter, written in Rust by [winj](https://github.com/winjwinj). It heavily inspired by [loa-logs](https://github.com/snoww/loa-logs), and uses reverse engineering work done by [StarResonanceDamageCounter](https://github.com/dmlgzs/StarResonanceDamageCounter) and [@Yuerino](https://github.com/Yuerino).
+BPSR Logs is a "blazingly fast" open source Blue Protocol: Star Resonance DPS meter, written in Rust by [winj](https://github.com/winjwinj). It is heavily inspired by [loa-logs](https://github.com/snoww/loa-logs), and uses reverse engineering work done by [StarResonanceDamageCounter](https://github.com/dmlgzs/StarResonanceDamageCounter) and [@Yuerino](https://github.com/Yuerino).
 
 # Download
 
 https://github.com/winjwinj/bpsr-logs/releases
 
 \*currently only Windows 7 and up is supported
+
+# Is it safe?
+
+<img width="802" height="247" alt="image" src="https://github.com/user-attachments/assets/ee6d0a33-40cc-4ff6-8d4e-8ecb1c323e37" />
 
 # Roadmap
 
