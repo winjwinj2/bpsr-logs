@@ -20,7 +20,14 @@
                 "minWidth": 400,
                 "minHeight": 120,
                 "alwaysOnTop": true,
-                "focus": false
+                "skipTaskbar": true
+            },
+            {
+                "label": "main",
+                "url": "main",
+                "minWidth": 650,
+                "minHeight": 300,
+                "visible": false
             }
         ],
         "security": {
