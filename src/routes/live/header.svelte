@@ -1,10 +1,18 @@
 <script lang="ts">
   import { getCurrentWebviewWindow } from "@tauri-apps/api/webviewWindow";
-  import { RefreshCw, Camera, Pause, Play, Minus } from "@lucide/svelte";
+
+  import CameraIcon from "virtual:icons/lucide/camera";
+  import RefreshCwIcon from "virtual:icons/lucide/refresh-cw";
+  import PauseIcon from "virtual:icons/lucide/pause";
+  import PlayIcon from "virtual:icons/lucide/play";
+  import MinusIcon from "virtual:icons/lucide/minus";
+  import PointerIcon from "virtual:icons/lucide/pointer";
+  import SettingsIcon from "virtual:icons/lucide/settings";
+
   import { onMount } from "svelte";
   import { commands, type HeaderInfo } from "$lib/bindings";
   import { takeScreenshot, tooltip } from "$lib/utils.svelte";
-  import AbbreviatedNumber from "$lib/components/AbbreviatedNumber.svelte";
+  import AbbreviatedNumber from "$lib/components/abbreviated-number.svelte";
 
   onMount(() => {
     fetchData();
@@ -21,10 +29,10 @@
         return;
       } else {
         headerInfo = result.data;
-        console.log("header: ", +Date.now(), $state.snapshot(headerInfo));
+        // console.log("header: ", +Date.now(), $state.snapshot(headerInfo));
       }
     } catch (e) {
-      console.error("Error fetching data:", e);
+      console.error("Error fetching data: ", e);
     }
   }
 
@@ -47,27 +55,28 @@
   <!-- Left side -->
   <span>
     <span {@attach tooltip(() => "Time Elapsed")}>{formatElapsed(headerInfo.elapsedMs)}</span>
-    <span><span {@attach tooltip(() => "Total Damage Dealt")}>T.DMG</span> <span {@attach tooltip(() => headerInfo.totalDmg.toLocaleString())}><AbbreviatedNumber val={Number(headerInfo.totalDmg)} /></span></span>
-    <span><span {@attach tooltip(() => "Total Damage per Second")}>T.DPS</span> <span {@attach tooltip(() => headerInfo.totalDps.toLocaleString())}><AbbreviatedNumber val={headerInfo.totalDps} /></span></span>
+    <span><span {@attach tooltip(() => "Total Damage Dealt")}>T.DMG</span> <span {@attach tooltip(() => headerInfo.totalDmg.toLocaleString())}><AbbreviatedNumber num={Number(headerInfo.totalDmg)} /></span></span>
+    <span><span {@attach tooltip(() => "Total Damage per Second")}>T.DPS</span> <span {@attach tooltip(() => headerInfo.totalDps.toLocaleString())}><AbbreviatedNumber num={headerInfo.totalDps} /></span></span>
   </span>
   <!-- Right side -->
   <span class="flex gap-1">
     <!-- TODO: add responsive clicks, toaster -->
-    <button onclick={() => commands.resetEncounter()} {@attach tooltip(() => "Reset Encounter")}><RefreshCw /></button>
+    <button onclick={() => takeScreenshot(screenshotDiv)} {@attach tooltip(() => "Screenshot to Clipboard")}><CameraIcon /></button>
+    <button onclick={() => commands.resetEncounter()} {@attach tooltip(() => "Reset Encounter")}><RefreshCwIcon /></button>
     <button
       onclick={() => {
         commands.togglePauseEncounter();
         isEncounterPaused = !isEncounterPaused;
       }}
-      
     >
       {#if isEncounterPaused}
-        <Play {@attach tooltip(() => "Resume Encounter")} />
+        <PlayIcon {@attach tooltip(() => "Resume Encounter")} />
       {:else}
-        <Pause {@attach tooltip(() => "Pause Encounter")} />
+        <PauseIcon {@attach tooltip(() => "Pause Encounter")} />
       {/if}
     </button>
-    <button onclick={() => takeScreenshot(screenshotDiv)} {@attach tooltip(() => "Screenshot to Clipboard")}><Camera /></button>
-    <button onclick={() => appWindow.hide()} {@attach tooltip(() => "Minimize")}><Minus /></button>
+    <button onclick={() => appWindow.setIgnoreCursorEvents(true)} {@attach tooltip(() => "Clickthrough")}><PointerIcon /></button>
+    <button onclick={() => appWindow.hide()} {@attach tooltip(() => "Settings")}><SettingsIcon /></button>
+    <button onclick={() => appWindow.hide()} {@attach tooltip(() => "Minimize")}><MinusIcon /></button>
   </span>
 </header>
