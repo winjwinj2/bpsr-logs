@@ -12,6 +12,7 @@ const DEFAULT_SETTINGS = {
   },
   accessibility: {
     blur: !IS_WIN_11,
+    transparency: true,
   },
   shortcuts: {
     showMeter: "",
