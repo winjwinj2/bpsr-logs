@@ -27,6 +27,8 @@ const DEFAULT_SETTINGS = {
     relativeToTopHealPlayer: false,
     relativeToTopHealSkill: false,
     resetElapsed: 60,
+    alternateNameDisplay: false,
+    shortenAbilityScore: false, 
   },
   accessibility: {
     blur: !IS_WIN_11,
